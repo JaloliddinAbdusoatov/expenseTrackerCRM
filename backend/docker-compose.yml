@@ -1,5 +1,7 @@
 # Быстрый старт: скопируйте env.example.txt → .env, задайте JWT_SECRET, DB_PASSWORD, FRONTEND_URL
 # Затем: docker compose up -d --build
+name: expense-tracker
+
 services:
   postgres:
     image: postgres:16-alpine
