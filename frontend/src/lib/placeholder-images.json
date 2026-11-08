@@ -1,0 +1,34 @@
+{
+  "placeholderImages": [
+    {
+      "id": "macbook-goal",
+      "description": "A silver MacBook Pro on a clean desk.",
+      "imageUrl": "https://images.unsplash.com/photo-1491472253230-a044054ca35f?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw0fHxsYXB0b3AlMjBjb21wdXRlcnxlbnwwfHx8fDE3NjMzMDcxMDN8MA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "laptop computer"
+    },
+    {
+      "id": "vacation-goal",
+      "description": "A beautiful tropical beach with palm trees.",
+      "imageUrl": "https://images.unsplash.com/photo-1571043281665-9debfed10719?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw5fHx0cm9waWNhbCUyMGJlYWNofGVufDB8fHx8MTc2MzM3MzAzN3ww&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "tropical beach"
+    },
+    {
+      "id": "restaurant-meal",
+      "description": "A delicious looking plate of pasta in a restaurant.",
+      "imageUrl": "https://images.unsplash.com/photo-1657053460900-3a12f32b592f?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw4fHxyZXN0YXVyYW50JTIwZm9vZHxlbnwwfHx8fDE3NjMzMTIzNTF8MA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "restaurant food"
+    },
+    {
+      "id": "concert-tickets",
+      "description": "A crowd at a music concert with stage lights.",
+      "imageUrl": "https://images.unsplash.com/photo-1709090083073-d130ac28cc19?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw3fHxtdXNpYyUyMGNvbmNlcnR8ZW58MHx8fHwxNzYzMzYyNjkxfDA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "music concert"
+    },
+    {
+      "id": "new-shoes",
+      "description": "A pair of brand new sneakers.",
+      "imageUrl": "https://images.unsplash.com/photo-1738951878950-94eef7f8344d?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw2fHxuZXclMjBzaG9lc3xlbnwwfHx8fDE3NjMzNzYxNDB8MA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "new shoes"
+    }
+  ]
+}

@@ -1,0 +1,75 @@
+# Быстрый старт: скопируйте env.example.txt → .env, задайте JWT_SECRET, DB_PASSWORD, FRONTEND_URL
+# Затем: docker compose up -d --build
+services:
+  postgres:
+    image: postgres:16-alpine
+    container_name: expanse-tracker-postgres
+    environment:
+      POSTGRES_DB: ${DB_NAME:-emotionflow}
+      POSTGRES_USER: ${DB_USERNAME:-postgres}
+      POSTGRES_PASSWORD: ${DB_PASSWORD:-postgres}
+    ports:
+      - "${DB_PORT:-5432}:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    healthcheck:
+      test:
+        [
+          "CMD-SHELL",
+          "pg_isready -U ${DB_USERNAME:-postgres} -d ${DB_NAME:-emotionflow}",
+        ]
+      interval: 5s
+      timeout: 5s
+      retries: 20
+    restart: unless-stopped
+
+  backend:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: expanse-tracker-backend
+    init: true
+    env_file:
+      - .env
+    ports:
+      - "${PORT:-3000}:3000"
+    environment:
+      NODE_ENV: ${NODE_ENV:-production}
+      PORT: 3000
+      HOST: 0.0.0.0
+      DB_TYPE: postgres
+      DB_HOST: postgres
+      DB_PORT: 5432
+      DB_USERNAME: ${DB_USERNAME:-postgres}
+      DB_PASSWORD: ${DB_PASSWORD:-postgres}
+      DB_NAME: ${DB_NAME:-emotionflow}
+      FRONTEND_URL: ${FRONTEND_URL:-http://localhost:8080}
+      SQLITE_PATH: /app/bootstrap/db.sqlite
+      AUTO_MIGRATE_SQLITE_TO_POSTGRES: ${AUTO_MIGRATE_SQLITE_TO_POSTGRES:-true}
+      FAIL_ON_EMPTY_POSTGRES: ${FAIL_ON_EMPTY_POSTGRES:-false}
+      POSTGRES_WAIT_MAX_ATTEMPTS: ${POSTGRES_WAIT_MAX_ATTEMPTS:-30}
+      POSTGRES_WAIT_DELAY_MS: ${POSTGRES_WAIT_DELAY_MS:-2000}
+      AUTO_SEED_ARTIFICIAL_USERS: ${AUTO_SEED_ARTIFICIAL_USERS:-true}
+    depends_on:
+      postgres:
+        condition: service_healthy
+    volumes:
+      - backend_uploads:/app/uploads
+      - ./bootstrap:/app/bootstrap:ro
+    healthcheck:
+      test:
+        [
+          "CMD",
+          "node",
+          "-e",
+          "fetch('http://127.0.0.1:3000/api/health').then((r)=>process.exit(r.ok?0:1)).catch(()=>process.exit(1))",
+        ]
+      interval: 15s
+      timeout: 5s
+      retries: 10
+      start_period: 30s
+    restart: unless-stopped
+
+volumes:
+  postgres_data:
+  backend_uploads:
